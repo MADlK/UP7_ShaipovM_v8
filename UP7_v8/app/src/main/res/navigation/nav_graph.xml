@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <!-- ==================== AUTH ==================== -->
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.pract7_v8.LoginFragment"
+        android:label="Вход"
+        tools:layout="@layout/fragment_login">
+
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+
+        <action
+            android:id="@+id/action_loginFragment_to_workerDashboardFragment"
+            app:destination="@id/workerDashboardFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/action_loginFragment_to_furnitureTypeListFragment"
+            app:destination="@id/furnitureTypeListFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/action_loginFragment_to_supplierDashboardFragment"
+            app:destination="@id/supplierDashboardFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.pract7_v8.RegisterFragment"
+        android:label="Регистрация"
+        tools:layout="@layout/fragment_register" />
+
+    <!-- ==================== WORKER ==================== -->
+
+    <fragment
+        android:id="@+id/workerDashboardFragment"
+        android:name="com.example.pract7_v8.WorkerDashboardFragment"
+        android:label="Панель работника"
+        tools:layout="@layout/fragment_worker_dashboard">
+
+        <action
+            android:id="@+id/action_workerDashboard_to_supplierList"
+            app:destination="@id/supplierListFragment" />
+
+        <action
+            android:id="@+id/action_workerDashboard_to_furnitureTypeList"
+            app:destination="@id/furnitureTypeListFragment" />
+
+        <action
+            android:id="@+id/action_workerDashboard_to_clientList"
+            app:destination="@id/clientListFragment" />
+
+        <action
+            android:id="@+id/action_workerDashboard_to_ordersFragment"
+            app:destination="@id/ordersFragment" />
+
+        <!-- Выход -->
+        <action
+            android:id="@+id/action_workerDashboard_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <!-- ==================== CLIENT ==================== -->
+    <fragment
+        android:id="@+id/furnitureTypeListFragment"
+        android:name="com.example.pract7_v8.FurnitureTypeListFragment"
+        android:label="Типы мебели"
+        tools:layout="@layout/fragment_furniture_type_list">
+
+        <action
+            android:id="@+id/action_furnitureTypeList_to_furnitureTypeEditor"
+            app:destination="@id/furnitureTypeEditorFragment" />
+
+        <action
+            android:id="@+id/action_furnitureTypeList_to_workerDashboard"
+            app:destination="@id/workerDashboardFragment"
+            app:popUpTo="@id/furnitureTypeListFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+
+    <!-- ==================== SUPPLIER ==================== -->
+
+    <fragment
+        android:id="@+id/supplierDashboardFragment"
+        android:name="com.example.pract7_v8.SupplierDashboardFragment"
+        android:label="Панель поставщика"
+        tools:layout="@layout/fragment_supplier_dashboard">
+
+        <!-- ✅ ДОБАВЛЕНО: Мои детали -->
+        <action
+            android:id="@+id/action_supplierDashboard_to_myPartsFragment"
+            app:destination="@id/myPartsFragment" />
+
+        <action
+            android:id="@+id/action_supplierDashboard_to_ordersFragment"
+            app:destination="@id/ordersFragment" />
+
+        <action
+            android:id="@+id/action_supplierDashboard_to_profileFragment"
+            app:destination="@id/profileFragment" />
+
+        <action
+            android:id="@+id/action_supplierDashboard_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <!-- ✅ НОВЫЙ: Мои детали (для поставщика) -->
+    <fragment
+        android:id="@+id/myPartsFragment"
+        android:name="com.example.pract7_v8.MyPartsFragment"
+        android:label="Мои детали"
+        tools:layout="@layout/fragment_my_parts">
+
+        <action
+            android:id="@+id/action_myParts_to_supplierDashboard"
+            app:destination="@id/supplierDashboardFragment"
+            app:popUpTo="@id/myPartsFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <!-- Заказы -->
+    <fragment
+        android:id="@+id/ordersFragment"
+        android:name="com.example.pract7_v8.OrdersFragment"
+        android:label="Заказы"
+        tools:layout="@layout/fragment_orders">
+
+        <action
+            android:id="@+id/action_orders_to_supplierDashboard"
+            app:destination="@id/supplierDashboardFragment"
+            app:popUpTo="@id/ordersFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <!-- Профиль -->
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.pract7_v8.ProfileFragment"
+        android:label="Профиль"
+        tools:layout="@layout/fragment_profile">
+
+        <action
+            android:id="@+id/action_profile_to_supplierDashboard"
+            app:destination="@id/supplierDashboardFragment"
+            app:popUpTo="@id/profileFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <!-- ==================== LISTS ==================== -->
+
+    <fragment
+        android:id="@+id/supplierListFragment"
+        android:name="com.example.pract7_v8.SupplierListFragment"
+        android:label="Поставщики"
+        tools:layout="@layout/fragment_supplier_list">
+
+        <action
+            android:id="@+id/action_supplierList_to_workerDashboard"
+            app:destination="@id/workerDashboardFragment"
+            app:popUpTo="@id/supplierListFragment"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/action_supplierList_to_supplierDashboard"
+            app:destination="@id/supplierDashboardFragment"
+            app:popUpTo="@id/supplierListFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/clientListFragment"
+        android:name="com.example.pract7_v8.ClientListFragment"
+        android:label="Клиенты"
+        tools:layout="@layout/fragment_client_list">
+
+        <action
+            android:id="@+id/action_clientList_to_workerDashboard"
+            app:destination="@id/workerDashboardFragment"
+            app:popUpTo="@id/clientListFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/furnitureTypeEditorFragment"
+        android:name="com.example.pract7_v8.FurnitureTypeEditorFragment"
+        android:label="Редактор типа"
+        tools:layout="@layout/fragment_furniture_editor">
+
+        <action
+            android:id="@+id/action_furnitureTypeEditor_to_furnitureTypeList"
+            app:destination="@id/furnitureTypeListFragment"
+            app:popUpTo="@id/furnitureTypeEditorFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <!-- ✅ НОВЫЙ: Редактор клиента (для работника) -->
+    <fragment
+        android:id="@+id/clientEditorFragment"
+        android:name="com.example.pract7_v8.ClientEditorFragment"
+        android:label="Редактор клиента"
+        tools:layout="@layout/fragment_client_editor">
+
+        <action
+            android:id="@+id/action_clientEditor_to_clientList"
+            app:destination="@id/clientListFragment"
+            app:popUpTo="@id/clientEditorFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.pract7_v8.CartFragment"
+        android:label="Корзина"
+        tools:layout="@layout/fragment_cart">
+        <action
+            android:id="@+id/action_cart_to_myOrders"
+            app:destination="@id/myOrdersFragment"
+            app:popUpTo="@id/cartFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <!-- ✅ Мои заказы (клиент) -->
+    <fragment
+        android:id="@+id/myOrdersFragment"
+        android:name="com.example.pract7_v8.MyOrdersFragment"
+        android:label="Мои заказы"
+        tools:layout="@layout/fragment_orders">
+        <action
+            android:id="@+id/action_myOrders_to_orderDetails"
+            app:destination="@id/orderDetailsFragment" />
+    </fragment>
+
+
+
+    <!-- ✅ Детали заказа -->
+    <fragment
+        android:id="@+id/orderDetailsFragment"
+        android:name="com.example.pract7_v8.OrderDetailsFragment"
+        android:label="Детали заказа"
+        tools:layout="@layout/fragment_order_details">
+
+    </fragment>
+</navigation>
